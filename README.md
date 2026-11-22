@@ -98,10 +98,7 @@ Sou estudante de Engenharia de Software em Belo Horizonte – MG e gosto de cons
 
 ### Banco de Dados
 
-![Linguagem SQL](https://img.shields.io/badge/Linguagem_SQL-04378a?style=for-the-badge)
-![Modelagem Relacional](https://img.shields.io/badge/Modelagem_Relacional-04378a?style=for-the-badge)
-![Otimização de Consultas](https://img.shields.io/badge/Otimiza%C3%A7%C3%A3o_de_Consultas-04378a?style=for-the-badge)
-![NoSQL](https://img.shields.io/badge/NoSQL-04378a?style=for-the-badge&logo=mongodb&logoColor=fff)
+[![Banco de Dados](https://skillicons.dev/icons?i=mongodb,mysql)](https://github.com/GabrielReiiss)
 
 ### Ferramentas & Versionamento
 
