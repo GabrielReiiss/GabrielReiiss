@@ -1,0 +1,56 @@
+name: Atualizar animações do perfil
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"   # a cada 12 horas
+  workflow_dispatch:          # permite rodar manualmente pela aba Actions
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: output-branch
+  cancel-in-progress: false
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+
+    steps:
+      - name: Gerar o Pac-Man comendo os commits
+        uses: abozanona/pacman-contribution-graph@main
+        with:
+          github_user_name: ${{ github.repository_owner }}
+
+      - name: Gerar o gráfico de atividade
+        uses: maurodesouza/github-readme-activity-graph-action@v1
+        with:
+          username: ${{ github.repository_owner }}
+          options: |
+            {
+              "bg_color": "0d1117",
+              "border_color": "e4e2e2",
+              "title_color": "3b82f6",
+              "color": "60a5fa",
+              "line": "3b82f6",
+              "point": "60a5fa",
+              "area": true,
+              "area_color": "3b82f6",
+              "radius": 5,
+              "days": 31,
+              "custom_title": "Atividade no GitHub"
+            }
+          output_path: dist/activity-graph.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publicar as imagens na branch output
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+          keep_history: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
